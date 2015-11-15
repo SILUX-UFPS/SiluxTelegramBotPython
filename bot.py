@@ -5,6 +5,7 @@ import datetime
 import telepot
 
 """
+Hay que traducir esto
 A simple bot that accepts two commands:
 - /roll : reply with a random integer between 1 and 6, like rolling a dice.
 - /time : reply with the current time, like a clock.
