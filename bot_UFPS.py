@@ -30,7 +30,7 @@ bolprevio = 0
 fecha = ""
 correo = ""
 otra = ""
-db = MySQLdb.connect(host="localhost", # tu host, generalmente localhost
+db = MySQLdb.connect(host="", # tu host, generalmente localhost
                      user="", # nombre de usuario para la conexion a la base de datos
                       passwd="", # contraseña para conectar a la base de datos
                       db="", charset="utf8") # nombre de la base de datos, se define codificacion utf-8
@@ -93,7 +93,7 @@ def handle(msg):
         bot.sendMessage(chat_id, str("Ing " + nombre.encode('utf-8') + ", la fecha actual es: " + str(datetime.datetime.now())))
     elif command == '/fotodeperfil':
 	bot.sendChatAction(chat_id, 'upload_photo')
-        result = bot.sendPhoto(chat_id, open('/home/alejandro/Pictures/UFPS_Logo.png', 'rb'))
+        result = bot.sendPhoto(chat_id, open('/home/alejandro/Downloads/photo_2015-11-30_22-46-59.jpg', 'rb'))
 
 	
 #si recibimos el comando previo, declaramos la variable bolprevio para que en el siguiente mensaje se sepa que hacer
@@ -156,7 +156,7 @@ def handle(msg):
 
     elif bolprevio == 2:
 	bot.sendChatAction(chat_id, 'typing')
-	cur.execute('SELECT nombre, correo FROM profesores where nombre like "%'+ command + '%"')
+	cur.execute('SELECT nombre, correo FROM profesor where nombre like "%'+ command + '%"')
         for row in cur.fetchall(): 
             correo += str(row[1])
         bolprevio = 0
@@ -166,9 +166,8 @@ def handle(msg):
      
    	
          
-#¡¡NO OLVIDE PONER EL TOKEN DEL BOT ABAJO!!
 
-bot = telepot.Bot('EL TOKEN DEL BOT!!')
+bot = telepot.Bot('')
 bot.notifyOnMessage(handle)
 #esto se imprime cuando el bot empieza su ejecución
 print 'Ando ejecutandome'
